@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gelişmiş Odak Zamanlayıcısı</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <header>
+        <div id="current-time-display">00:00:00</div>
+        <button id="settings-btn">⚙️ Ayarlar</button>
+    </header>
+
+    <div class="container">
+        <h1>Odak Zamanlayıcısı</h1>
+        
+        <div class="mode-selector">
+            <button id="pomodoro-btn" class="active">Odaklan</button> 
+            <button id="break-btn">Mola</button>
+        </div>
+        
+        <div id="time-display">25:00</div> 
+
+        <div class="stats-bar">
+            <span>Bugün Çalışılan Süre:</span>
+            <span id="daily-focus-display" class="focus-time-value">0sn</span>
+        </div>
+        
+        <div class="timer-controls">
+            <button id="start-btn">Başlat</button>
+            <button id="pause-btn" disabled>Durdur</button>
+            <button id="reset-btn">Sıfırla</button>
+        </div>
+        
+        <p id="status-message">Hazır. Başlat'a basarak odaklanmaya başla.</p>
+    </div>
+
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Süre Ayarları (Dakika)</h2>
+            <form id="settings-form">
+                <label for="pomodoro-duration">Odaklanma Süresi:</label>
+                <input type="number" id="pomodoro-duration" min="5" max="90" value="25" required>
+
+                <label for="break-duration">Mola Süresi:</label>
+                <input type="number" id="break-duration" min="1" max="30" value="5" required>
+                
+                <button type="submit">Ayarları Kaydet</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script> 
+</body>
+</html>
