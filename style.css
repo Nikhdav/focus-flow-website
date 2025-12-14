@@ -1,0 +1,238 @@
+/* ====================================================================
+   I. TEMEL AYARLAR VE RENK PALETİ
+   ==================================================================== */
+
+:root {
+    /* Renk Değişkenleri (Dark Mode) */
+    --bg-color: #1a1a2e;       /* Ana Koyu Arka Plan */
+    --main-color: #e94560;     /* Odak/Vurgu Kırmızısı */
+    --accent-color: #0f3460;   /* Mavi Vurgu/Buton Arka Planı */
+    --text-color: #ffffff;     /* Açık Metin */
+    --light-text-color: #90a4ae; /* Hafif Metin (Saat, Mesaj) */
+    --card-bg: #222e47;        /* Modül/Kart Arka Planı */
+    --input-bg: #313e5a;       /* Input/İstatistik Arka Planı */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* ====================================================================
+   II. HEADER (SAAT VE AYARLAR)
+   ==================================================================== */
+
+header {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+#current-time-display {
+    font-size: 1.2em;
+    font-weight: 300;
+    color: var(--light-text-color);
+}
+
+#settings-btn {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s;
+}
+
+#settings-btn:hover {
+    background-color: #1b4b72;
+}
+
+
+/* ====================================================================
+   III. ANA ZAMANLAYICI KAPSAYICI
+   ==================================================================== */
+
+.container {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+}
+
+h1 {
+    color: var(--main-color);
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
+#time-display {
+    font-size: 6em;
+    font-weight: 700;
+    margin: 20px 0;
+    color: var(--text-color);
+}
+
+/* --- Mod Seçiciler --- */
+.mode-selector {
+    margin-bottom: 25px;
+}
+
+.mode-selector button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin: 0 8px;
+    transition: background-color 0.2s;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.mode-selector button.active {
+    background-color: var(--main-color);
+    font-weight: bold;
+}
+
+/* --- Kontrol Butonları --- */
+.timer-controls button {
+    padding: 12px 25px;
+    margin: 0 8px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    background-color: var(--main-color);
+    color: white;
+    transition: background-color 0.2s;
+}
+
+.timer-controls button:hover:not(:disabled) {
+    background-color: #d83451;
+}
+
+.timer-controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#status-message {
+    margin-top: 25px;
+    font-size: 1.1em;
+    color: var(--light-text-color);
+}
+
+/* ====================================================================
+   IV. İSTATİSTİK ÇUBUĞU
+   ==================================================================== */
+
+.stats-bar {
+    background-color: var(--input-bg); 
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.focus-time-value {
+    color: var(--main-color); 
+    font-weight: bold;
+}
+
+/* ====================================================================
+   V. MODAL STİLLERİ (AYARLAR PENCERESİ)
+   ==================================================================== */
+
+.modal {
+    display: none; /* Varsayılan olarak gizli */
+    position: fixed; 
+    z-index: 100; /* Her zaman en üstte */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6); /* Yarı saydam siyah arka plan */
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    margin: 10% auto; 
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%; 
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.close-btn {
+    color: var(--light-text-color);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--main-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#settings-form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--light-text-color);
+}
+
+#settings-form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    background-color: var(--input-bg); 
+    color: var(--text-color);
+    font-size: 1em;
+}
+
+#settings-form button[type="submit"] {
+    width: 100%;
+    margin-top: 25px;
+    background-color: var(--main-color);
+    color: var(--text-color);
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
